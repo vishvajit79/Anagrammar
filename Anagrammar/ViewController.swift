@@ -9,9 +9,19 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    @IBOutlet weak var highScoreLbl: UILabel!
+    @IBAction func exitBtn(_ sender: UIButton) {
+        exit(0)
+    }
+    
+    public func changeHighScore(){
+        var highscore = UserDefaults.standard.integer(forKey: "highscore")
+        highScoreLbl.text = "High Score: \(highscore)"
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        changeHighScore()
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -20,6 +30,10 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        var highscore = UserDefaults.standard.integer(forKey: "highscore")
+        highScoreLbl.text = "High Score: \(highscore)"
+    }
 
 }
 
